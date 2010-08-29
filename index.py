@@ -10,22 +10,18 @@ if path:
 import palabro
 
 urls = (
-    '/index.py/', 'main',
     '/(.*)', 'word'
 )
 
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
 
-class main:
-    def GET(self):
-        result = palabro.getLatest()
-        if result:
-            word = result[0]
-            return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
-
 class word:
     def GET(self, word):
-        result = palabro.get(word)
+        if word != 'index.py/':
+            result = palabro.get(word)
+        else:
+            result = palabro.getLatest()
+        
         if result:
             word = result[0]
             return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
