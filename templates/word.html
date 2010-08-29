@@ -22,5 +22,13 @@ $var title: Palabra del día: $vars['word'].palabro
     <p><a id="hint_link" href="#">Ver ayuda</a></p>
     <div id="hint">$:markdown(word.hint)</div>
     <p><a id="desc_link" href="#">Ver definición</a></p>
-    <div id="description">$:markdown(word.description)</div>
+    <div id="description">
+        $:markdown(word.description)
+        
+        <p>
+            ver definición en: 
+            <a href="http://buscon.rae.es/draeI/SrvltGUIBusUsual?LEMA=$word.palabro">RAE</a>, 
+            <a href="http://www.wordreference.com/definicion/$word.palabro">wordreference</a>, 
+        </p>
+    </div>
 </div>
