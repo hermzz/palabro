@@ -10,7 +10,7 @@ if path:
 import palabro
 
 urls = (
-    '/backend/', 'listQueue',
+    '/backend/?', 'listQueue',
     '/backend/edit/(.*)', 'editWord',
     '/backend/add', 'addWord',
     '/(.*)', 'word'
