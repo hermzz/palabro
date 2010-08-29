@@ -1,9 +1,14 @@
 $def with (content)
 <html>
     <head>
-        <title>Palabra del día: $content.title</title>
-        
-        <link href="/static/css/main.css" media="screen" rel="stylesheet" type="text/css" /> 
+		<title>Palabra del día: $content.title</title>
+		
+		<link href="/static/css/main.css" media="screen" rel="stylesheet" type="text/css" /> 
+		
+		<script src="http://www.google.com/jsapi" language="javascript"></script> 
+		<script language="javascript"> 
+			google.load("jquery","1.4.2");
+		</script>
     </head>
     <body>
         $:content
