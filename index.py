@@ -10,8 +10,8 @@ if path:
 import palabro
 
 urls = (
-    '/.*', 'main',
-    )
+    '/index.py/', 'main'
+)
 
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
 
@@ -22,5 +22,16 @@ class main:
             word = result[0]
             return '%s<br />%s' % (word.palabro, word.description)
 
-application = web.application(urls, globals()).wsgifunc()
+app = web.application(urls, globals())
+
+def internalerror():
+    return web.internalerror("Bad, bad server. No donut for you.")
+
+def notfound():
+    return web.notfound("Whatever you're lookin' for it ain't here")
+
+app.internalerror = internalerror
+app.notfound = notfound
+
+application = app.wsgifunc()
 
