@@ -1,4 +1,4 @@
-import web, os, sys
+import web, os, sys, locale
 
 web.config.debug = False
 
@@ -10,12 +10,17 @@ if path:
 import palabro
 
 urls = (
+    '/backend/', 'listQueue',
+    '/backend/edit/(.*)', 'editWord',
+    '/backend/add', 'addWord',
     '/(.*)', 'word'
 )
 
+locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
+
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
 web.template.Template.globals['frender'] = web.template.frender
-render = web.template.render('templates', base='main')
+render = web.template.render('templates', cache=False, base='main')
 
 class word:
     def GET(self, word):
@@ -25,8 +30,32 @@ class word:
             result = palabro.getLatest()
         
         if result:
-            return render.word({'word': result[0]})
-            
+            return render.word({'word': result})
+
+class listQueue:
+    def GET(self):
+        words = palabro.getQueue()
+        return render.listQueue(words)
+
+class editWord:
+    def GET(self, word):
+        result = palabro.get(word);
+        
+        if result:
+            return render.editWord(result[0])
+
+    def POST(self, word):
+        palabro.edit(word, web.input()['hint'], web.input()['description'])
+        web.seeother('/backend/edit/%s' % word)
+        
+class addWord:
+    def GET(self):
+        return render.addWord()
+    
+    def POST(self):
+        palabro.add(web.input()['palabro'], web.input()['hint'], web.input()['description'])
+        web.seeother('/backend/')
+               
 
 app = web.application(urls, globals())
 

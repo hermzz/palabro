@@ -1,0 +1,11 @@
+$def with (words)
+
+$var title: Word queue
+
+<div id="content">
+	<h1>Queue</h1>
+	<ul>
+	$for word in words:
+		<li><a href="/backend/edit/$word.palabro">$word.palabro</a> ($word.publish)</li>
+	</ul>
+</div>
