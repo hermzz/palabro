@@ -4,6 +4,11 @@ $ word = vars['word']
 $var title: Palabra del día: $vars['word'].palabro
 
 <div id="content">
-	<p id="word">Palabra del día para $word.publish: <strong>$word.palabro</strong></p>
-	<p id="description">$word.description</p>
+    <h1>Palabra del día</h1>
+    <p id="meta">para $:word.date.strftime("%A %d de %B, %Y")</p>
+    <p id="word">$word.palabro</p>
+    <p><a href="#">Ver ayuda</a></p>
+    <p id="hint">$:word.hint</p>
+    <p><a href="#">Ver definición</a></p>
+    <p id="description">$word.description</p>
 </div>
