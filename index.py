@@ -10,7 +10,8 @@ if path:
 import palabro
 
 urls = (
-    '/index.py/', 'main'
+    '/index.py/', 'main',
+    '/(.*)', 'word'
 )
 
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
@@ -21,6 +22,14 @@ class main:
         if result:
             word = result[0]
             return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
+
+class word:
+    def GET(self, word):
+        result = palabro.get(word)
+        if result:
+            word = result[0]
+            return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
+            
 
 app = web.application(urls, globals())
 
