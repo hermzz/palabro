@@ -1,4 +1,4 @@
-import web, os, sys, locale
+import web, os, sys, locale, markdown
 
 web.config.debug = False
 
@@ -19,7 +19,7 @@ urls = (
 locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
 
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
-web.template.Template.globals['frender'] = web.template.frender
+web.template.Template.globals['markdown'] = markdown.markdown
 render = web.template.render('templates', cache=False, base='main')
 
 class word:
@@ -42,7 +42,7 @@ class editWord:
         result = palabro.get(word);
         
         if result:
-            return render.editWord(result[0])
+            return render.editWord(result)
 
     def POST(self, word):
         palabro.edit(word, web.input()['hint'], web.input()['description'])

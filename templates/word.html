@@ -20,7 +20,7 @@ $var title: Palabra del día: $vars['word'].palabro
     <p id="meta">para $:word.date.strftime("%A %d de %B, %Y")</p>
     <p id="word">$word.palabro</p>
     <p><a id="hint_link" href="#">Ver ayuda</a></p>
-    <p id="hint">$:word.hint</p>
+    <div id="hint">$:markdown(word.hint)</div>
     <p><a id="desc_link" href="#">Ver definición</a></p>
-    <p id="description">$word.description</p>
+    <div id="description">$:markdown(word.description)</div>
 </div>
