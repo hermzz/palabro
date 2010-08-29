@@ -4,7 +4,19 @@ from web.db import sqlwhere
 from index import db
 
 def get(palabro):
-    return db.select('palabros', where=sqlwhere({'palabro': palabro}))
+    result = db.select(
+        'palabros', 
+        what='*, UNIX_TIMESTAMP(publish) AS unix_publish', 
+        where=sqlwhere({'palabro': palabro}))
+    
+    if result:
+        word = result[0]
+        
+        word['date'] = date.fromtimestamp(word['unix_publish'])
+        
+        return word
+    else:
+        return False
 
 def getLatest():
     result = db.select(
