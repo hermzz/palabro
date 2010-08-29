@@ -11,6 +11,10 @@ body {
 	width: 800px;
 }
 
+a:link, a:visited, a:hover, a:active {
+	color: #00f;
+}
+
 h1 {
 	font-weight: normal;
 	font-size: 4em;
@@ -28,6 +32,15 @@ h1 {
 	color: #333;
 	text-align: center;
 	font-size: 3em;
+}
+
+/* hide hint and definition by default */
+
+#hint, #description {
+	background-color: #eee;
+	border: 1px dotted #ccc;
+	padding: 3px;
+	display: none;
 }
 
 /* backend */
