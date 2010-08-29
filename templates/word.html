@@ -1,0 +1,9 @@
+$def with (vars)
+
+$ word = vars['word']
+$var title: Palabra del día: $vars['word'].palabro
+
+<div id="content">
+	<p id="word">Palabra del día para $word.publish: <strong>$word.palabro</strong></p>
+	<p id="description">$word.description</p>
+</div>

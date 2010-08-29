@@ -14,6 +14,8 @@ urls = (
 )
 
 db = web.database(dbn='mysql', user='root', pw='', db='palabro')
+web.template.Template.globals['frender'] = web.template.frender
+render = web.template.render('templates', base='main')
 
 class word:
     def GET(self, word):
@@ -23,8 +25,7 @@ class word:
             result = palabro.getLatest()
         
         if result:
-            word = result[0]
-            return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
+            return render.word({'word': result[0]})
             
 
 app = web.application(urls, globals())
