@@ -8,6 +8,7 @@ if path:
     sys.path.insert(0,path)
 
 import palabro
+from config import config
 
 urls = (
     '/backend/?', 'listQueue',
@@ -18,7 +19,7 @@ urls = (
 
 locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
 
-db = web.database(dbn='mysql', user='root', pw='', db='palabro')
+db = web.database(**config['db'])
 web.template.Template.globals['markdown'] = markdown.markdown
 render = web.template.render('templates', cache=False, base='main')
 
