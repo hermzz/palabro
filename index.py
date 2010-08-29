@@ -20,7 +20,7 @@ class main:
         result = palabro.getLatest()
         if result:
             word = result[0]
-            return '%s<br />%s' % (word.palabro, word.description)
+            return 'Word for %s: %s<br />%s' % (word.publish, word.palabro, word.description)
 
 app = web.application(urls, globals())
 
