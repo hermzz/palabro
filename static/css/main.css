@@ -1,0 +1,47 @@
+body {
+	font-family: Georgia;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+#content {
+	text-align: left;
+	margin: 0 auto;
+	width: 800px;
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 4em;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#meta {
+	color: #999;
+	text-align: center;
+}
+
+#word {
+	color: #333;
+	text-align: center;
+	font-size: 3em;
+}
+
+/* backend */
+input#palabro {
+	width: 100%;
+	padding: 3px;
+	font-family: Georgia;
+	border: 1px solid #999;
+}
+
+textarea#hint, textarea#description {
+	width: 100%;
+	height: 100px;
+	padding: 3px;
+	font-family: Georgia;
+	border: 1px solid #999;
+}
