@@ -6,4 +6,4 @@ def get(palabro):
     return db.select('palabros', where=sqlwhere({'palabro': palabro})
 
 def getLatest():
-    return db.select('palabros', where='publish <= DATE(NOW())', order='id DESC', limit=1)
+    return db.select('palabros', where='publish <= DATE(NOW())', order='publish DESC', limit=1)
