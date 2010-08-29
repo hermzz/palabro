@@ -1,14 +1,12 @@
 body {
 	font-family: Georgia;
 	text-align: center;
-	margin: 0;
-	padding: 0;
 }
 
 #content {
 	text-align: left;
 	margin: 0 auto;
-	width: 800px;
+	width: 700px;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -32,6 +30,9 @@ h1 {
 	color: #333;
 	text-align: center;
 	font-size: 3em;
+	line-height: 1.5em;
+	margin: 0.5em 0;
+	background-color: #eee;
 }
 
 /* hide hint and definition by default */
@@ -39,8 +40,13 @@ h1 {
 #hint, #description {
 	background-color: #eee;
 	border: 1px dotted #ccc;
-	padding: 3px;
+	border-width: 1px 0;
+	padding: 0;
 	display: none;
+}
+
+#hint p, #description p {
+	padding: 0px 10px;
 }
 
 /* backend */
