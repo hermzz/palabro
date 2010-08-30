@@ -39,7 +39,7 @@ def getLatest():
         return False
 
 def getRandom():
-    return db.select('palabros', order='RAND()', limit=1)[0]
+    return db.select('palabros', where='publish <= NOW()', order='RAND()', limit=1)[0]
     
 def getRange(start, end):
     return db.select(
