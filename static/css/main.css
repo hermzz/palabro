@@ -42,6 +42,19 @@ h2 {
 	line-height: 1.5em;
 	margin: 0.5em 0;
 	background-color: #eee;
+	position: relative;
+}
+
+#word span {
+	position: absolute;
+	right: 0;
+	background-color: #ddd;
+	padding: 0 10px;
+}
+
+#word span a {
+	color: #666;
+	text-decoration: none;
 }
 
 #footer {
