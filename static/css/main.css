@@ -35,6 +35,18 @@ h1 {
 	background-color: #eee;
 }
 
+#footer {
+	color: #999;
+}
+
+#footer a {
+	color: #7b7bff;
+}
+
+#footer a:hover {
+	color: #00f;
+}
+
 /* hide hint and definition by default */
 
 #hint, #description {
