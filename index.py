@@ -1,4 +1,9 @@
+#coding=utf-8
+
 import web, os, sys, locale, markdown
+import datetime
+from datetime import date, timedelta
+from PyRSS2Gen import RSS2, RSSItem, Guid
 
 web.config.debug = False
 
@@ -81,7 +86,33 @@ class aleatorio:
         web.seeother('/%s' % word.palabro, True)
 
 class rss:
-    pass
+    def GET(self):
+        start_date = date.today() + timedelta(days=-90)
+        end_date = date.today()
+        words = palabro.getRange(start_date.isoformat(), end_date.isoformat())
+        
+        rss_words = []
+        for word in words:
+            rss_words.append(
+                RSSItem(
+                    title = u"Palabra del día: %s" % word.palabro,
+                    link = u"http://palabro/%s" % word.palabro,
+                    description = markdown.markdown(word.description),
+                    guid = Guid(u"http://palabro/%s" % word.palabro),
+                    pubDate = datetime.datetime(word.publish.year, word.publish.month, word.publish.day, 0, 0, 0)
+                )
+            )
+        
+        rss = RSS2(
+            title = u"palabro.es",
+            link = "http://palabro.es",
+            description = u"Feed RSS de palabro.es",
+            lastBuildDate = datetime.datetime.now(),
+            items = rss_words
+        )
+        
+        web.header('Content-type', "application/rss+xml; charset=utf-8")
+        return rss.to_xml(encoding='utf-8')
 
 app = web.application(urls, globals())
 

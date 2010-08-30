@@ -1,3 +1,5 @@
+#coding=utf-8
+
 import web
 from datetime import date
 from web.db import sqlwhere
@@ -38,6 +40,13 @@ def getLatest():
 
 def getRandom():
     return db.select('palabros', order='RAND()', limit=1)[0]
+    
+def getRange(start, end):
+    return db.select(
+        'palabros', 
+        where='publish >= "%s" AND publish <= "%s"' % (start, end), 
+        order='publish DESC'
+    )
         
 def getQueue():
     return db.select('palabros', where='publish > DATE(NOW())', order='publish DESC')
