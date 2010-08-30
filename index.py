@@ -2,6 +2,9 @@ import web, os, sys, locale, markdown
 
 web.config.debug = False
 
+# this tells web.py to _not_ append index.py/ to redirects
+os.environ["REAL_SCRIPT_NAME"] = ''
+
 path = os.path.dirname(__file__)
 if path:
     os.chdir(path)
@@ -11,9 +14,18 @@ import palabro
 from config import config
 
 urls = (
+    # backend
     '/backend/?', 'listQueue',
     '/backend/edit/(.*)', 'editWord',
     '/backend/add', 'addWord',
+    
+    # extras
+    '/sobre', 'sobre',
+    '/archivo', 'archivo',
+    '/aleatorio', 'aleatorio',
+    '/rss', 'rss',
+    
+    # default
     '/(.*)', 'word'
 )
 
@@ -56,7 +68,20 @@ class addWord:
     def POST(self):
         palabro.add(web.input()['palabro'], web.input()['hint'], web.input()['description'])
         web.seeother('/backend/')
-               
+
+class sobre:
+    pass
+
+class archivo:
+    pass
+
+class aleatorio:
+    def GET(self):
+        word = palabro.getRandom()
+        web.seeother('/%s' % word.palabro, True)
+
+class rss:
+    pass
 
 app = web.application(urls, globals())
 
