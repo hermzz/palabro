@@ -25,7 +25,7 @@ urls = (
     '/backend/add', 'addWord',
     
     # extras
-    '/sobre', 'sobre',
+    '/acerca-de', 'sobre',
     '/archivo', 'archivo',
     '/aleatorio', 'aleatorio',
     '/rss', 'rss',
@@ -75,7 +75,8 @@ class addWord:
         web.seeother('/backend/')
 
 class sobre:
-    pass
+    def GET(self):
+        return render.sobre()
 
 class archivo:
     pass
