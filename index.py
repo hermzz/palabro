@@ -38,6 +38,7 @@ locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
 
 db = web.database(**config['db'])
 web.template.Template.globals['markdown'] = markdown.markdown
+web.template.Template.globals['config'] = config
 render = web.template.render('templates', cache=False, base='main')
 
 class word:
