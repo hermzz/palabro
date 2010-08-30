@@ -35,6 +35,9 @@ def getLatest():
         return word
     else:
         return False
+
+def getRandom():
+    return db.select('palabros', order='RAND()', limit=1)[0]
         
 def getQueue():
     return db.select('palabros', where='publish > DATE(NOW())', order='publish DESC')
