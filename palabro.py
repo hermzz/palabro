@@ -47,6 +47,21 @@ def getRange(start, end):
         where='publish >= "%s" AND publish <= "%s"' % (start, end), 
         order='publish DESC'
     )
+
+def getArchive():
+    return db.select(
+        'palabros',
+        what='publish, YEAR(publish) as year, MONTH(publish) AS month',
+        group='year, month',
+        order='publish DESC'
+    )
+
+def getMonthArchive(year, month):
+    return db.select(
+        'palabros',
+        where=sqlwhere({'YEAR(publish)': year, 'MONTH(publish)': month}),
+        order='publish DESC'
+    )
         
 def getQueue():
     return db.select('palabros', where='publish > DATE(NOW())', order='publish DESC')
