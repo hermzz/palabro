@@ -26,7 +26,8 @@ urls = (
     
     # extras
     '/acerca-de', 'sobre',
-    '/archivo', 'archivo',
+    '/archivo/([0-9]+)/([0-9]+)', 'archiveMonth',
+    '/archivo', 'archive',
     '/aleatorio', 'aleatorio',
     '/rss', 'rss',
     
@@ -79,8 +80,15 @@ class sobre:
     def GET(self):
         return render.sobre()
 
-class archivo:
-    pass
+class archive:
+    def GET(self):
+        years = palabro.getArchive()
+        return render.archive(years)
+        
+class archiveMonth:
+    def GET(self, year, month):
+        words = palabro.getMonthArchive(year, month)
+        return render.archiveMonth(date(int(year), int(month), 1), words)
 
 class aleatorio:
     def GET(self):

@@ -1,0 +1,14 @@
+$def with (month, words)
+
+$var title: Archivo para $month.strftime('%B %Y')
+
+<div id="content">
+	<h1>Archivo para $month.strftime('%B %Y')</h1>
+
+<ul>	
+$for word in words:
+	<li><a href="/$word.palabro">$word.palabro</a> <em>$word.publish.strftime('%A %d')</em></li>
+</ul>
+
+</div>
+

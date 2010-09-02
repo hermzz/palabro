@@ -1,0 +1,17 @@
+$def with (years)
+
+$var title: Archive
+$ prev_year = 0
+
+<div id="content">
+	<h1>Archivo</h1>
+
+$for month in years:
+	$if prev_year != month.year:
+		$ prev_year = month.year
+		</ul>
+		<h2>$month.year</h2>
+		<ul>
+	
+	<li><a href="/archivo/$month.year/$month.month">$month.publish.strftime("%B")</a></li>
+</div>
