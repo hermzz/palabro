@@ -13,7 +13,7 @@ a:link, a:visited, a:hover, a:active {
 	color: #00f;
 }
 
-p { 
+p, li { 
 	color: #333;
 }
 
