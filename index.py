@@ -4,6 +4,7 @@ import web, os, sys, locale, markdown
 import datetime
 from datetime import date, timedelta
 from PyRSS2Gen import RSS2, RSSItem, Guid
+from urllib import urlencode
 
 web.config.debug = False
 
@@ -40,6 +41,7 @@ locale.setlocale(locale.LC_ALL, 'es_ES.utf8')
 db = web.database(**config['db'])
 web.template.Template.globals['markdown'] = markdown.markdown
 web.template.Template.globals['config'] = config
+web.template.Template.globals['urlencode'] = urlencode
 render = web.template.render('templates', cache=False, base='main')
 
 class word:
