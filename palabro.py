@@ -52,6 +52,7 @@ def getArchive():
     return db.select(
         'palabros',
         what='publish, YEAR(publish) as year, MONTH(publish) AS month',
+        where='DATE(publish) <= DATE(NOW())',
         group='year, month',
         order='publish DESC'
     )
@@ -59,7 +60,7 @@ def getArchive():
 def getMonthArchive(year, month):
     return db.select(
         'palabros',
-        where=sqlwhere({'YEAR(publish)': year, 'MONTH(publish)': month}),
+        where=sqlwhere({'YEAR(publish)': year, 'MONTH(publish)': month}) + ' AND DATE(publish) <= DATE(NOW())',
         order='publish DESC'
     )
         
