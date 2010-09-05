@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
+RewriteCond %{HTTP_HOST} ^www\.palabro\.es$ [NC]
+RewriteRule ^(.*)$ http://palabro.es/$1 [R=301,L]
+
 RewriteRule ^/?$ /index.py/ [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
