@@ -102,3 +102,10 @@ textarea#ihint, textarea#idescription {
 	font-family: Georgia;
 	border: 1px solid #999;
 }
+
+.error {
+	padding: 5px;
+        background-color: #ef9398;
+        border: 1px solid #dc5757;
+	text-align: center;
+}

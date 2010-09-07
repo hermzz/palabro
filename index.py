@@ -53,6 +53,8 @@ class word:
         
         if result:
             return render.word({'word': result})
+        else:
+            raise web.notfound(render.wordnotfound())
 
 class listQueue:
     def GET(self):
@@ -129,10 +131,10 @@ class rss:
 app = web.application(urls, globals())
 
 def internalerror():
-    return web.internalerror("Bad, bad server. No donut for you.")
+    return web.internalerror(render.internalerror())
 
 def notfound():
-    return web.notfound("Whatever you're lookin' for it ain't here")
+    return web.notfound(render.notfound())
 
 app.internalerror = internalerror
 app.notfound = notfound
