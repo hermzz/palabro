@@ -108,9 +108,9 @@ class rss:
             rss_words.append(
                 RSSItem(
                     title = u"Palabra del día: %s" % word.palabro,
-                    link = u"http://palabro/%s" % word.palabro,
+                    link = u"http://palabro.es/%s" % word.palabro,
                     description = markdown.markdown(word.description),
-                    guid = Guid(u"http://palabro/%s" % word.palabro),
+                    guid = Guid(u"http://palabro.es/%s" % word.palabro),
                     pubDate = datetime.datetime(word.publish.year, word.publish.month, word.publish.day, 0, 0, 0)
                 )
             )
