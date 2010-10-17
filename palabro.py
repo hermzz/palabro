@@ -38,6 +38,51 @@ def getLatest():
     else:
         return False
 
+def getNavWords(date):
+    first_word = False
+    prev_word = False
+    
+    next_word = False
+    latest_word = False
+    
+    # get previous word
+    prev_result = db.select(
+        'palabros', 
+        what='*, UNIX_TIMESTAMP(publish) AS unix_publish', 
+        where='publish < "'+date.isoformat()+'"', 
+        order='publish DESC', 
+        limit=1
+    )
+    	
+    if prev_result:
+        prev_word = prev_result[0]
+        
+        first_result = db.select('palabros', what='*, UNIX_TIMESTAMP(publish) AS unix_publish', order='publish ASC', limit=1)[0]
+        if first_result['publish'] != prev_word['publish']:
+            first_word = first_result
+    
+    next_result = db.select(
+        'palabros', 
+        what='*, UNIX_TIMESTAMP(publish) AS unix_publish', 
+        where='publish > "'+date.isoformat()+'" AND publish <= DATE(NOW())', 
+        order='publish ASC', 
+        limit=1
+    )
+    
+    if next_result:
+        next_word = next_result[0]
+        
+        latest_result = db.select('palabros', what='*, UNIX_TIMESTAMP(publish) AS unix_publish', where='publish <= DATE(NOW())', order='publish DESC', limit=1)[0]
+        if latest_result['publish'] != next_word['publish']:
+            latest_word = latest_result
+    
+    return {
+        'first': first_word,
+        'prev': prev_word,
+        'next': next_word,
+        'latest': latest_word
+    }
+
 def getRandom():
     return db.select('palabros', where='publish <= NOW()', order='RAND()', limit=1)[0]
     

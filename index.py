@@ -52,7 +52,8 @@ class word:
             result = palabro.getLatest()
         
         if result:
-            return render.word({'word': result})
+            # get first, previous, next and latest words
+            return render.word({'word': result, 'nav_words': palabro.getNavWords(result['date'])})
         else:
             raise web.notfound(render.wordnotfound())
 

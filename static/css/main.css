@@ -33,9 +33,25 @@ h2 {
 #meta {
 	color: #999;
 	text-align: center;
+	position: relative;
+}
+
+#past_nav, #future_nav {
+	font-size: 0.9em;
+}
+
+#past_nav {
+	position: absolute;
+	left: 0;
+}
+
+#future_nav {
+	position: absolute;
+	right: 0;
 }
 
 #word {
+	clear: both;
 	color: #333;
 	text-align: center;
 	font-size: 3em;

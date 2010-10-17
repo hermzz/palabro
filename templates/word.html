@@ -1,6 +1,7 @@
 $def with (vars)
 
 $ word = vars['word']
+$ nav_words = vars['nav_words']
 $var title: Palabra del día: $vars['word'].palabro
 
 <script type="text/javascript">
@@ -17,7 +18,25 @@ $var title: Palabra del día: $vars['word'].palabro
 
 <div id="content">
     <h1>Palabra del día</h1>
-    <p id="meta">para $:word.date.strftime("%A %d de %B, %Y")</p>
+    <p id="meta">
+        para $:word.date.strftime("%A %d de %B, %Y")
+        
+        <span id="past_nav">
+            $if nav_words['first']:
+                <a href="/$:nav_words['first'].palabro">&laquo; primera</a>
+                
+            $if nav_words['prev']:
+                <a href="/$:nav_words['prev'].palabro">&lsaquo; anterior</a>
+        </span>
+        
+        <span id="future_nav">  
+            $if nav_words['next']:
+                <a href="/$:nav_words['next'].palabro">siguiente &rsaquo;</a>
+                
+            $if nav_words['latest']:
+                <a href="/$:nav_words['latest'].palabro">última &raquo;</a>
+        </span>
+    </p>
     <p id="word">$word.palabro <span><a href="/$word.palabro" title="Enlace permanente">#</span></p>
     <p><a id="hint_link" href="#">Ver ayuda</a></p>
     <div id="hint">$:markdown(word.hint)</div>
