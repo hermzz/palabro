@@ -46,7 +46,7 @@ render = web.template.render('templates', cache=False, base='main')
 
 class word:
     def GET(self, word):
-        if word != 'index.py/':
+        if word != '':
             result = palabro.get(word)
         else:
             result = palabro.getLatest()
