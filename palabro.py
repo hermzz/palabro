@@ -2,14 +2,13 @@
 
 import web
 from datetime import date
-from web.db import sqlwhere
 from index import db
 
 def get(palabro):
     result = db.select(
         'palabros', 
         what='*, UNIX_TIMESTAMP(publish) AS unix_publish', 
-        where=sqlwhere({'palabro': palabro}))
+        where={'palabro': palabro})
     
     if result:
         word = result[0]
@@ -117,4 +116,4 @@ def add(palabro, hint, description):
     db.insert('palabros', palabro=palabro, hint=hint, description=description, publish=new_publish)
 
 def edit(palabro, hint, description):
-    db.update('palabros', hint=hint, description=description, where=sqlwhere({'palabro': palabro}))
+    db.update('palabros', hint=hint, description=description, where={'palabro': palabro})

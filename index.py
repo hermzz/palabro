@@ -4,7 +4,7 @@ import web, os, sys, locale, markdown
 import datetime
 from datetime import date, timedelta
 from PyRSS2Gen import RSS2, RSSItem, Guid
-from urllib import urlencode
+from urllib.parse import urlencode
 
 web.config.debug = False
 
@@ -16,7 +16,6 @@ if path:
     os.chdir(path)
     sys.path.insert(0,path)
 
-import palabro
 from config import config
 
 urls = (
@@ -42,8 +41,9 @@ db = web.database(**config['db'])
 web.template.Template.globals['markdown'] = markdown.markdown
 web.template.Template.globals['config'] = config
 web.template.Template.globals['urlencode'] = urlencode
-render = web.template.render('templates', cache=False, base='main')
+render = web.template.render('./templates/', cache=False, base='main')
 
+import palabro
 class word:
     def GET(self, word):
         if word != '':
@@ -140,5 +140,6 @@ def notfound():
 app.internalerror = internalerror
 app.notfound = notfound
 
-application = app.wsgifunc()
+if __name__ == "__main__":
+    app.run()
 
